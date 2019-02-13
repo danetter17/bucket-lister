@@ -82,6 +82,10 @@
     margin-bottom: 18px;
   }
 
+  p.homepage-paragraph {
+    text-align: center;
+  }
+
   .main {
     overflow: hidden;
   }
