@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  get '/signup' do
+  get '/users/signup' do
     if logged_in?(session)
       redirect to '/bucket-list-items'
     else
