@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    #binding.pry
+    #binding.pr-
     if !params.has_value?("")
       user = User.create(params)
       session[:user_id] = user.id

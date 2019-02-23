@@ -3,7 +3,7 @@ class BucketListItemsController < ApplicationController
     if logged_in?(session)
       @user = current_user(session)
       @bucket_list_items = BucketListItem.all
-      erb :"bucket-list-items/bucket-list-items"
+      erb :"/items/bucket_list_items"
     else
       redirect "/login"
     end
