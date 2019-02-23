@@ -2,3 +2,7 @@
 
 <h4>Your Bucket List Items:</h4>
 <br><br>
+
+<% BucketItem.all.each do |bucket_item| %>
+  <p><%= bucket_item.content %></p>
+<% end %>

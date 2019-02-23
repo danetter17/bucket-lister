@@ -1,3 +1,3 @@
-class BucketListItem < ActiveRecord::Base
+class BucketItem < ActiveRecord::Base
   belongs_to :user
 end
