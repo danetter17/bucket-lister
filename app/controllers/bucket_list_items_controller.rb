@@ -1,5 +1,5 @@
 class BucketListItemsController < ApplicationController
-  get '/bucket_list/list_items' do
+  get '/list_items' do
     if logged_in?(session)
       @user = current_user(session)
       @list_items = BucketListItem.all
