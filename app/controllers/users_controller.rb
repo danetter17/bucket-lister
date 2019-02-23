@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   get '/users/signup' do
     if logged_in?(session)
-      redirect to '/bucket-list-items'
+      redirect to '/list_items'
     else
       erb :"/users/signup"
     end
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     if !params.has_value?("")
       user = User.create(params)
       session[:user_id] = user.id
-      redirect '/bucket-list-items'
+      redirect '/list_items'
     else
       redirect "/signup"
     end
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
   get '/users/login' do
     if logged_in?(session)
-      redirect '/bucket-list-items'
+      redirect '/list_items'
     else
       erb :"users/login"
     end
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     user = User.find_by(:username => params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect '/bucket-list-items'
+      redirect '/list_items'
     else
       erb :"users/login"
     end
