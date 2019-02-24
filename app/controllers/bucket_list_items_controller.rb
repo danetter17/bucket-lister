@@ -2,7 +2,7 @@ class BucketListItemsController < ApplicationController
   get '/list_items' do
     if logged_in?(session)
       @user = current_user(session)
-      @list_items = BucketItem.all
+      @bucket_items = BucketItem.all
       erb :"/list_items/list_items"
     else
       redirect "/login"
@@ -20,9 +20,10 @@ class BucketListItemsController < ApplicationController
   post '/list_items' do
     if !params[:content].empty?
       user = User.find_by(id: session[:user_id])
+      @bucket_items = BucketItem.all
       list_item = BucketItem.create(content: params[:content])
-      user.list_items << list_item
-      redirect to "/list_items/#{list_item.id}"
+      user.bucket_items << list_item
+      redirect to "/list_items/list_items"
     else
       redirect to "/list_items/new"
     end
