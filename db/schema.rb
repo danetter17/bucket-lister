@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190207212645) do
+ActiveRecord::Schema.define(version: 20190226164722) do
 
-  create_table "bucket_items", force: :cascade do |t|
+  create_table "bucket_list_items", force: :cascade do |t|
     t.string "content"
   end
 

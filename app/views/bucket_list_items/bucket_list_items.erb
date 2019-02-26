@@ -3,8 +3,8 @@
 <h4>Your Bucket List Items:</h4>
 <br><br>
 
-<% BucketItem.all.each do |bucket_item| %>
-  <p><%= bucket_item.content %></p>
+<% BucketListItem.all.each do |bucket_list_item| %>
+  <p><%= bucket_list_item.content %></p>
 <% end %>
 
 <a href="/logout">Logout</a>
