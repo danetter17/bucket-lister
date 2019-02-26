@@ -23,7 +23,7 @@ class BucketListItemsController < ApplicationController
       @bucket_list_items = BucketListItem.all
       bucket_list_item = BucketListItem.create(content: params[:content])
       user.bucket_list_items << bucket_list_item
-      redirect to "/bucket_list_items/bucket_list_items"
+      redirect to "/bucket_list_items"
     else
       redirect to "/bucket_list_items/new"
     end
