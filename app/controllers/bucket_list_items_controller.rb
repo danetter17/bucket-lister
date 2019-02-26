@@ -23,9 +23,18 @@ class BucketListItemsController < ApplicationController
       @bucket_list_items = BucketListItem.all
       bucket_list_item = BucketListItem.create(content: params[:content])
       user.bucket_list_items << bucket_list_item
-      redirect to "/bucket_list_items"
+      redirect to "/bucket_list_items/#{bucket_list_item.id}"
     else
       redirect to "/bucket_list_items/new"
+    end
+  end
+
+  get '/bucket_list_items/:id' do
+    if logged_in?(session)
+      @bucket_list_item = BucketListItem.find_by(id: params[:id])
+      erb :'/bucket_list_items/show'
+    else
+      redirect to "/login"
     end
   end
 end
