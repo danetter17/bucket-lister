@@ -42,7 +42,7 @@ class BucketListItemsController < ApplicationController
     if logged_in?(session)
       @bucket_list_item = BucketListItem.find_by(id: params[:id])
       if @bucket_list_item && @bucket_list_item.user == current_user(session)
-        erb :'/bucket_list_items/edit_bucket_list_item'
+        erb :'/bucket_list_items/edit'
       else
         redirect '/bucket_list_items'
       end
@@ -57,7 +57,17 @@ class BucketListItemsController < ApplicationController
       @bucket_list_item.update(content: params[:content])
       redirect '/bucket_list_items'
     else
-      redirect "/bucket_list_items/#{@bucket_list_item.id}/edit"
+      redirect "/bucket_list_items/new"
     end
+  end
+
+  delete "/bucket_list_items/:id/delete" do
+    @bucket_list_item = BucketListItem.find_by(id: params[:id])
+    if @bucket_list_item
+      if @bucket_list_item.user == current_user(session)
+        @bucket_list_item.destroy
+      end
+    end
+    redirect "/bucket_list_items"
   end
 end

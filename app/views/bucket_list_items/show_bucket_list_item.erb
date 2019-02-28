@@ -1,9 +1,16 @@
+<h3>Bucket List Item:</h3>
+<br>
+
 <p><%= @bucket_list_item.content %></p>
 
 
-<!-- <form action="/bucket_list_items/<%=@bucket_list_item.id%>/delete" method="post">
+<form action="/bucket_list_items/<%= @bucket_list_item.id %>/delete" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete Bucket List Item">
+  <input type="submit" value="delete">
 </form>
 
-<a href="/bucket_list_items/<%=@bucket_list_item.id%>/edit">Edit Bucket List Item</a> -->
+<form action="/bucket_list_items/<%=@bucket_list_item.id%>/edit" method="GET">
+  <button type="submit" name="submit" id="edit-click">Edit</button>
+</form>
+
+<!-- <a href="/bucket_list_items/<%=@bucket_list_item.id%>/edit">Edit</a> -->
