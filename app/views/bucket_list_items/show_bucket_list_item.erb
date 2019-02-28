@@ -4,7 +4,7 @@
 <p><%= @bucket_list_item.content %></p>
 
 
-<form action="/bucket_list_items/<%= @bucket_list_item.id %>/delete" method="post">
+<form action="/bucket_list_items/<%= @bucket_list_item.id %>/delete" method="POST">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <input type="submit" value="delete">
 </form>

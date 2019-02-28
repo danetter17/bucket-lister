@@ -65,7 +65,7 @@ class BucketListItemsController < ApplicationController
     @bucket_list_item = BucketListItem.find_by(id: params[:id])
     if @bucket_list_item
       if @bucket_list_item.user == current_user(session)
-        @bucket_list_item.destroy
+        @bucket_list_item.delete
       end
     end
     redirect "/bucket_list_items"
