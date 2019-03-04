@@ -8,16 +8,30 @@ class UsersController < ApplicationController
     end
   end
 
+  # post '/signup' do
+  #   #binding.pr-
+  #   if !params.has_value?("")
+  #     user = User.create(params)
+  #     session[:user_id] = user.id
+  #     redirect '/bucket_list_items'
+  #   else
+  #     redirect "/signup"
+  #   end
+  # end
+
   post '/signup' do
-    #binding.pr-
-    if !params.has_value?("")
-      user = User.create(params)
-      session[:user_id] = user.id
-      redirect '/bucket_list_items'
-    else
-      redirect "/signup"
-    end
-  end
+   if params.values.any? &:empty?
+     #flash[:message] = "All fields are required."
+     redirect "/signup"
+   elsif !User.exists?(username: params[:username].strip)
+     user = User.create(params)
+     session[:user_id] = user.id
+     redirect "/bucket_list_items"
+   else
+     #flash[:message] = "Username already exists."
+     erb :"users/login"
+   end
+ end
 
   get '/users/login' do
     if logged_in?(session)
