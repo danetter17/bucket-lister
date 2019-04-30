@@ -20,7 +20,7 @@ class BucketListItemsController < ApplicationController
   post '/bucket_list_items' do
     if !params[:content].empty?
       user = User.find_by(id: session[:user_id])
-      @bucket_list_items = BucketListItem.all
+      #@bucket_list_items = BucketListItem.all
       bucket_list_item = BucketListItem.create(content: params[:content])
       user.bucket_list_items << bucket_list_item
       redirect to "/bucket_list_items/#{bucket_list_item.id}"
@@ -53,7 +53,7 @@ class BucketListItemsController < ApplicationController
 
   patch '/bucket_list_items/:id' do
     @bucket_list_item = BucketListItem.find_by(id: params[:id])
-    if !params[:content].empty?
+    if @bucket_list_item && !params[:content].empty? && @bucket_list_item.user == current_user(session)
       @bucket_list_item.update(content: params[:content])
       redirect '/bucket_list_items'
     else

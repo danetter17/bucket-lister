@@ -6,11 +6,13 @@
 
 <p><%= @bucket_list_item.content %></p>
 
-<form action="/bucket_list_items/<%= @bucket_list_item.id %>/edit" method="GET">
-  <input type="submit" value="Edit">
-</form>
+<% if @bucket_list_item.user == current_user(session) %>
+  <form action="/bucket_list_items/<%= @bucket_list_item.id %>/edit" method="GET">
+    <input type="submit" value="Edit">
+  </form>
 
-<form action="/bucket_list_items/<%= @bucket_list_item.id %>/delete" method="POST">
-  <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete">
-</form>
+  <form action="/bucket_list_items/<%= @bucket_list_item.id %>/delete" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete">
+  </form>
+<% end %>
