@@ -4,8 +4,15 @@
 <br><br>
 <p>Create a <a href="/bucket_list_items/new">New</a> bucket list item</p>
 
+<h3>Your personal bucket list:</h3>
 <% @user.bucket_list_items.all.each do |bucket_list_item| %>
   <p><%= bucket_list_item.content %> <a href="/bucket_list_items/<%= bucket_list_item.id %>">View Item</a></p>
 <% end %>
 
+<h3>The Community bucket list: </h3>
+<% BucketListItem.all.each do |bucket_list_item| %>
+  <p><%= bucket_list_item.content %> <a href="/bucket_list_items/<%= bucket_list_item.id %>">View Item</a></p>
+<% end %>
+
+<br><br>
 <a href="/logout">Logout</a>
