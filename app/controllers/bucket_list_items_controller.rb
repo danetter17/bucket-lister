@@ -17,10 +17,19 @@ class BucketListItemsController < ApplicationController
     end
   end
 
+  get '/bucket_list_items/my_list' do
+    if logged_in?(session)
+      @user = current_user(session)
+      @bucket_list_items = BucketListItem.all
+      erb :'/bucket_list_items/my_list'
+    else
+      redirect "/login"
+    end
+  end
+
   post '/bucket_list_items' do
     if !params[:content].empty?
       user = User.find_by(id: session[:user_id])
-      #@bucket_list_items = BucketListItem.all
       bucket_list_item = BucketListItem.create(content: params[:content])
       user.bucket_list_items << bucket_list_item
       redirect to "/bucket_list_items/#{bucket_list_item.id}"
