@@ -8,7 +8,7 @@
   </div>
 </nav>
 
-h3>Welcome, <%= current_user(session).username %></h3>
+<h3>Welcome, <%= current_user(session).username %></h3>
 
 <h3>Your personal bucket list:</h3>
 <% @user.bucket_list_items.all.each do |bucket_list_item| %>

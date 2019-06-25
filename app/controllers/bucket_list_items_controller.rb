@@ -1,30 +1,21 @@
 class BucketListItemsController < ApplicationController
   get '/bucket_list_items' do
-    if logged_in?(session)
+    redirect_if_not_logged_in
       @user = current_user(session)
       @bucket_list_items = BucketListItem.all
       erb :"/bucket_list_items/bucket_list_items"
-    else
-      redirect "/login"
-    end
   end
 
   get '/bucket_list_items/new' do
-    if logged_in?(session)
-      erb :'/bucket_list_items/new'
-    else
-      redirect "/login"
-    end
+    redirect_if_not_logged_in
+    erb :'/bucket_list_items/new'
   end
 
   get '/bucket_list_items/my_list' do
-    if logged_in?(session)
+    redirect_if_not_logged_in
       @user = current_user(session)
       @bucket_list_items = BucketListItem.all
       erb :'/bucket_list_items/my_list'
-    else
-      redirect "/login"
-    end
   end
 
   post '/bucket_list_items' do
@@ -39,25 +30,19 @@ class BucketListItemsController < ApplicationController
   end
 
   get '/bucket_list_items/:id' do
-    if logged_in?(session)
+    redirect_if_not_logged_in
       @bucket_list_item = BucketListItem.find_by(id: params[:id])
       erb :'bucket_list_items/show_bucket_list_item'
-    else
-      redirect to "/login"
-    end
   end
 
   get '/bucket_list_items/:id/edit' do
-    if logged_in?(session)
+    redirect_if_not_logged_in
       @bucket_list_item = BucketListItem.find_by(id: params[:id])
       if @bucket_list_item && @bucket_list_item.user == current_user(session)
         erb :'/bucket_list_items/edit'
       else
         redirect '/bucket_list_items'
       end
-    else
-      redirect '/login'
-    end
   end
 
   patch '/bucket_list_items/:id' do

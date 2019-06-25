@@ -12,6 +12,7 @@
 <br>
 
 <p><%= @bucket_list_item.content %></p>
+<p><%= @bucket_list_item.user.username %></p>
 
 <% if @bucket_list_item.user == current_user(session) %>
   <form action="/bucket_list_items/<%= @bucket_list_item.id %>/edit" method="GET">
